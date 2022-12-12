@@ -1,2 +1,2 @@
-# Testify_Backend
+# Testify
 Online Exam Portal
