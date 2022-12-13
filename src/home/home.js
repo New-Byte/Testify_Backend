@@ -1,0 +1,1 @@
+// Route to display data on home page
