@@ -75,7 +75,7 @@ app.post("/forgot_password", async (req, res) => {
   // link to reset password
   var link = `${process.env.BASE_URL}/reset-password?userId=${user1._id}&token=${token}`
   if (resetpasslink) {
-    link = resetpasslink
+    link = `${resetpasslink}?userId=${user1._id}&token=${token}`
   }
   //link = link + '?userId=' + user1._id + '&token=' + token
   // send email to user to reset password
@@ -83,11 +83,11 @@ app.post("/forgot_password", async (req, res) => {
   if (stat) {
     return res.status(200).json({
       success: 1,
-      msg: "Password reset link sent to your email account.",
-      data: {
+      msg: "Password reset link has been sent to your email account.",
+      /*data: {
         user_id: user_id,
         token: token
-      }
+      }*/
     })
 
   }
