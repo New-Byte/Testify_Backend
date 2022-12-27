@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  access: {
+    tabs: {type: Array},
+    set_preferences: {type: Boolean, default: false}
+  },
   created_at: {
     type: Date,
     default: Date.now

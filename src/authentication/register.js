@@ -47,6 +47,13 @@ app.post("/authentication/register", async (req, res) => {
     const salt = bcrypt.genSaltSync(10)
     user_password = bcrypt.hashSync(user_password, salt)
 
+    if(user_role=='admin'){
+      const access = {
+        tabs: ['Users'],
+        set_preferences: true
+      }
+    }
+
     // Create user in our database
     var user1 = await UserSchema.create({
       user_full_name: user_full_name,
@@ -54,7 +61,8 @@ app.post("/authentication/register", async (req, res) => {
       username: username,
       user_password: user_password,
       user_profile_image: user_profile_image,
-      user_role: user_role
+      user_role: user_role,
+      access: access
     })
 
     if (user1) {
@@ -68,7 +76,7 @@ app.post("/authentication/register", async (req, res) => {
     console.log(error)
     res.status(203).json({
       success: 0,
-      msg: "Something Went wrong! Try again."
+      msg: "Something Went wrong!"
 
     })
   }

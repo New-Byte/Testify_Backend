@@ -83,7 +83,14 @@ app.post("/authentication/login", async (req, res) => {
 
       return res.status(200).json({
         success: 1,
-        msg: "Logged in successfully"
+        msg: "Logged in successfully",
+        data: {
+          user: username,
+          user_full_name: user1.user_full_name,
+          user_role: user1.user_role,
+          access: user1.access,
+          user_profile_image: user1.user_profile_image
+        }
       })
     }
     return res.status(203).json({
@@ -94,7 +101,7 @@ app.post("/authentication/login", async (req, res) => {
     console.log(err)
     return res.status(203).json({
       success: 0,
-      msg: err
+      msg: 'Something went wrong!'
     })
   }
 })
