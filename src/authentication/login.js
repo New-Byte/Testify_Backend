@@ -78,7 +78,9 @@ app.post("/authentication/login", async (req, res) => {
         token: token
       }
       res.cookie("userData", users_data, {
-        httpOnly: false
+        httpOnly: false,
+        maxAge: 259200000,
+        domain: process.env.domain
       })
 
       return res.status(200).json({
