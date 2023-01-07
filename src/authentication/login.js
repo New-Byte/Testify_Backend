@@ -91,7 +91,8 @@ app.post("/authentication/login", async (req, res) => {
           user_full_name: user1.user_full_name,
           user_role: user1.user_role,
           access: user1.access,
-          user_profile_image: user1.user_profile_image
+          user_profile_image: user1.user_profile_image,
+          token: token
         }
       })
     }

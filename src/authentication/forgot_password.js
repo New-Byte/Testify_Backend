@@ -201,6 +201,7 @@ app.post("/password_reset/:userId/:token", async (req, res) => {
     user_id: userId,
     username: username
   })
+  var stat = await sendemail(user1.user_email_id, "Successfully Changed the Password", `Hello ${user1.user_full_name},\nYou have successfully changed the password to your Testify account. In case, if you didn't change the password please reach out to us at developer2552@zohomail.in email id. We will address your query as soon as possible.\n\nThanks and Regards,\n<b>Testify Team</b>`)
   return res.status(200).json({
     success: 1,
     msg: "Password reset successful."

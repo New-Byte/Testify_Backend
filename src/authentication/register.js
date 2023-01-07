@@ -50,15 +50,23 @@ app.post("/authentication/register", async (req, res) => {
     user_password = bcrypt.hashSync(user_password, salt)
 
     if(user_role=='admin'){
-      var message = "<h1>Welcome, "+user1.user_full_name + "</h1> <b style='font-family:sans-seriff;font-size: 18px; color: green'>You made the right choice!!!</b><br/>We welcome you to our family as an admin. You are an important member already...\n You are the one who keeps intruders away and everyone at bay.. :). We welcome you and your desciplined co-ordination!!! <br/><br/>Yours Truly,<br/>The Testify Family."
-      const access = {
+      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as an admin. You are an important member already...\n You are the one who keeps intruders away and everyone at bay.. :). We welcome you and your desciplined co-ordination!!! \n\nYours Truly,\nThe Testify Family."
+      var access = {
         tabs: ['Home','Users', 'Settings'],
         set_preferences: true
       }
     } else if(user_role=='teacher'){
-      var message = "<img src='../common_api/logo123.png'><br/><h1>Welcome, "+user1.user_full_name + "</h1> <b style='font-family:sans-seriff;font-size: 18px; color: green'>You made the right choice!!!</b><br/>We welcome you to our family as a Teacher. You are an important member already...\n You have the responsibility to craft the future of our country and we welcome you to the mission!<br/><br/>Yours Truly,<br/>The Testify Family."
+      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Teacher. You are an important member already...\n You have the responsibility to craft the future of our country and we welcome you to the mission!\n\nYours Truly,\nThe Testify Family."
+      var access = {
+        tabs: ['Home','Tab1', 'Settings'],
+        set_preferences: false
+      }
     } else if(user_role=='student'){
-      var message = "<h1>Welcome, "+user1.user_full_name + "</h1> <b style='font-family:sans-seriff;font-size: 18px; color: green'>You made the right choice!!!</b><br/>We welcome you to our family as a Student. You are an important member already...\n You are the future and your future is secure with us....<br/><br/>Yours Truly,<br/>The Testify Family."
+      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Student. You are an important member already...\n You are the future and your future is secure with us....\n\nYours Truly,\nThe Testify Family."
+      var access = {
+        tabs: ['Home','Tab2', 'Settings'],
+        set_preferences: false
+      }
     } else {
       return res.status('203').json({
         status: 0,
@@ -78,7 +86,7 @@ app.post("/authentication/register", async (req, res) => {
     })
 
     if (user1) {
-      email(user1.user_email_id, 'Welcome to Testify!', message)
+      await email(user1.user_email_id, 'Welcome to Testify!', message)
       // return new user
       return res.status(200).json({
         success: 1,
