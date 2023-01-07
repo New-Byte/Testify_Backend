@@ -58,13 +58,13 @@ app.post("/authentication/register", async (req, res) => {
     } else if(user_role=='teacher'){
       var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Teacher. You are an important member already...\n You have the responsibility to craft the future of our country and we welcome you to the mission!\n\nYours Truly,\nThe Testify Family."
       var access = {
-        tabs: ['Home','Tab1', 'Settings'],
+        tabs: ['Home','Classes', 'Students', 'Exams', 'Settings'],
         set_preferences: false
       }
     } else if(user_role=='student'){
       var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Student. You are an important member already...\n You are the future and your future is secure with us....\n\nYours Truly,\nThe Testify Family."
       var access = {
-        tabs: ['Home','Tab2', 'Settings'],
+        tabs: ['Home','Exams', 'Settings'],
         set_preferences: false
       }
     } else {
