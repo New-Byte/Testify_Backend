@@ -50,19 +50,22 @@ app.post("/authentication/register", async (req, res) => {
     user_password = bcrypt.hashSync(user_password, salt)
 
     if(user_role=='admin'){
-      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as an admin. You are an important member already...\n You are the one who keeps intruders away and everyone at bay.. :). We welcome you and your desciplined co-ordination!!! \n\nYours Truly,\nThe Testify Family."
+      var message = "Welcome, "+user_full_name + `You made the right choice!!!\nWe welcome you to our family as an admin. You are an important member already...\n You are the one who keeps intruders away and everyone at bay.. :). We welcome you and your desciplined co-ordination!!!\n\nYour Credentials:\nUsername: ${username}\nPassword: 1234\n\nYours Truly,\nThe Testify Family.`
+      var htmlmsg = "<img src='../common_api/logo123.png' alt='Logo'/><br/><h1>Welcome, Welcome, Welcome!</h1>"
       var access = {
         tabs: ['Home','Users', 'Settings'],
         set_preferences: true
       }
     } else if(user_role=='teacher'){
-      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Teacher. You are an important member already...\n You have the responsibility to craft the future of our country and we welcome you to the mission!\n\nYours Truly,\nThe Testify Family."
+      var message = "Welcome, "+user_full_name + `You made the right choice!!!\nWe welcome you to our family as a Teacher. You are an important member already...\n You have the responsibility to craft the future of our country and we welcome you to the mission!\n\nYour Credentials:\nUsername: ${username}\nPassword: 1234\n\nYours Truly,\nThe Testify Family.`
+      var htmlmsg = "<img src='../common_api/logo123.png' alt='Logo'/><br/><h1>Welcome, Welcome, Welcome!</h1>"
       var access = {
         tabs: ['Home','Classes', 'Students', 'Exams', 'Settings'],
         set_preferences: false
       }
     } else if(user_role=='student'){
-      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Student. You are an important member already...\n You are the future and your future is secure with us....\n\nYours Truly,\nThe Testify Family."
+      var message = "Welcome, "+user_full_name + "You made the right choice!!!\nWe welcome you to our family as a Student. You are an important member already...\n You are the future and your future is secure with us....\n\nYour Credentials:\nUsername: ${username}\nPassword: 1234\n\nYours Truly,\nThe Testify Family."
+      var htmlmsg = "<img src='../common_api/logo123.png' alt='Logo'/><br/><h1>Welcome, Welcome, Welcome!</h1>"
       var access = {
         tabs: ['Home','Exams', 'Settings'],
         set_preferences: false
@@ -86,7 +89,7 @@ app.post("/authentication/register", async (req, res) => {
     })
 
     if (user1) {
-      await email(user1.user_email_id, 'Welcome to Testify!', message)
+      await email(user1.user_email_id, 'Welcome to Testify!', message, htmlmsg)
       // return new user
       return res.status(200).json({
         success: 1,

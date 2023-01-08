@@ -77,9 +77,10 @@ app.post("/forgot_password", async (req, res) => {
   if (resetpasslink) {
     link = `${resetpasslink}?userId=${user1._id}&token=${token}`
   }
+  var htmlmsg = "<img src='../common_api/logo123.png' alt='Logo'/><br/><h1>Reset Password for Testify Account</h1>"
   //link = link + '?userId=' + user1._id + '&token=' + token
   // send email to user to reset password
-  var stat = await sendemail(user1.user_email_id, "Reset the password for Testify account", link)
+  var stat = await sendemail(user1.user_email_id, "Reset the password for Testify account", link, htmlmsg)
   if (stat) {
     return res.status(200).json({
       success: 1,

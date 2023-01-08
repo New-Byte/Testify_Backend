@@ -6,14 +6,17 @@ Functions of this page:-
 const nodemailer = require("nodemailer")
 
 
-const sendEmail = async (email, subject, text, attachment = false, attachments = []) => {
+const sendEmail = async (email, subject, text = '', html = '<div></div>', attachment = false, attachments = []) => {
   try {
     console.log(process.env.HOST)
     const transporter = nodemailer.createTransport({
-      service: 'smtp.zoho.in',
+      service: 'smtp-mail.outlook.com',
       host: process.env.HOST,
-      port: 465,
-      secure: true,
+      port: 587,
+      secureConnection: false,
+      tls: {
+        ciphers:'SSLv3'
+      },
       auth: {
         user: process.env.USER,
         pass: process.env.PASS
@@ -30,6 +33,7 @@ const sendEmail = async (email, subject, text, attachment = false, attachments =
         to: email,
         subject: subject,
         text: text,
+        html: html,
         attachments: attachments
       })
     } else {
